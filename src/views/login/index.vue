@@ -16,14 +16,14 @@
         :model="loginForm"
         label-position="right"
       >
-        <el-form-item prop="userName">
+        <el-form-item prop="username">
           <el-input
-            v-model.trim="loginForm.userName"
+            v-model.trim="loginForm.username"
             prefix-icon="user"
           ></el-input>
         </el-form-item>
-        <el-form-item prop="userPwd">
-          <el-input v-model.trim="loginForm.userPwd" prefix-icon="Lock" />
+        <el-form-item prop="password">
+          <el-input v-model.trim="loginForm.password" prefix-icon="Lock" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleLoginSubmit">登录</el-button>
@@ -34,16 +34,28 @@
 </template>
 <script setup>
 import { reactive, ref } from 'vue'
-
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+const store = useStore()
+const router = useRouter()
 const LoginForm = ref('')
 const loginFormRules = {
-  userName: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  userPwd: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 }
 const loginForm = reactive({
-  userName: 'admin',
-  userPwd: 'admin'
+  username: 'admin',
+  password: 'admin'
 })
+
+const handleLoginSubmit = () => {
+  LoginForm.value.validate(async (valid) => {
+    if (!valid) return
+    await store.dispatch('user/login', loginForm)
+    await store.dispatch('user/userInfo')
+    router.push('/')
+  })
+}
 </script>
 <style lang="scss" scoped>
 .login-container {

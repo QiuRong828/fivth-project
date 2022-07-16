@@ -1,13 +1,19 @@
 import axios from 'axios'
+import store from '@/store'
 
 const service = axios.create({
-  baseURL: '',
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
 
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
+    const token = store.getters.token
+    if (token) {
+      config.headers.token = token
+    }
+    console.log(config)
     return config
   },
   (error) => {
@@ -18,6 +24,10 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
+    console.log(response)
+    if (response.status === 200) {
+      return response.data.data
+    }
     return response
   },
   (error) => {
