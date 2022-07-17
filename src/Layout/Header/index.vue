@@ -5,7 +5,7 @@
         <el-icon><ElemeFilled /></el-icon> 积云编程
       </div>
       <div class="l2">
-        <el-icon><Expand /></el-icon>
+        <el-icon @click="changeIsCollapse"><Expand /></el-icon>
         <el-icon @click="router.go(0)"><Refresh /></el-icon>
       </div>
     </div>
@@ -16,6 +16,7 @@
 
       <div>
         <el-avatar :size="30" :src="store.getters.userinfo.avatar" />
+
         <el-dropdown>
           <span class="el-dropdown-link">
             {{ store.getters.userinfo.username }}
@@ -59,6 +60,11 @@ const xg = () => {
 const logout = async () => {
   await store.dispatch('user/logout')
   router.push('/login')
+}
+
+// 侧边栏伸缩
+const changeIsCollapse = () => {
+  store.commit('menu/changeIsCollapse')
 }
 </script>
 <style lang="scss" scoped>

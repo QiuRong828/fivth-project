@@ -13,7 +13,6 @@ service.interceptors.request.use(
     if (token) {
       config.headers.token = token
     }
-    console.log(config)
     return config
   },
   (error) => {
