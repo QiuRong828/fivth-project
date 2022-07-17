@@ -1,5 +1,5 @@
 import UserApi from '../../api/user'
-import { setItem, getItem } from '../../utils/storage'
+import { setItem, getItem, removeAllItem } from '../../utils/storage'
 
 export default {
   namespaced: true,
@@ -36,6 +36,11 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    logout({ commit }) {
+      commit('setToken', '')
+      commit('setUserInfo', '')
+      removeAllItem()
     }
   }
 }
