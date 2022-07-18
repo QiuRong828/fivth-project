@@ -1,16 +1,13 @@
 import { createStore } from 'vuex'
 import user from './modules/user'
 import menu from './modules/menu'
-
+import tagsView from './modules/tagsView'
+import getters from './getters'
 export default createStore({
-  getters: {
-    token: (state) => state.user.token,
-    userinfo: (state) => state.user.userinfo,
-    menus: (state) => state.user.userinfo.menus,
-    isCollapse: (state) => state.menu.isCollapse
-  },
+  getters,
   modules: {
     user,
-    menu
+    menu,
+    tagsView
   }
 })

@@ -41,10 +41,19 @@ const getUserInfo = () => {
   })
 }
 
+// 退出登录
+const logout = () => {
+  return request({
+    url: '/admin/logout',
+    method: 'POST'
+  })
+}
+
 export default {
   login,
   statistics1,
   statistics2,
   statistics3,
-  getUserInfo
+  getUserInfo,
+  logout
 }

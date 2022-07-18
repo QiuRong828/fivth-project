@@ -5,7 +5,7 @@ export default {
   namespaced: true,
   state: () => ({
     token: getItem('token') || '',
-    userinfo: getItem('userinfo') || {}
+    userinfo: {}
   }),
   mutations: {
     setToken(state, token) {
@@ -14,7 +14,6 @@ export default {
     },
     setUserInfo(state, userinfo) {
       state.userinfo = userinfo
-      setItem('userinfo', userinfo)
     }
   },
   actions: {
@@ -37,10 +36,13 @@ export default {
         console.log(error)
       }
     },
-    logout({ commit }) {
-      commit('setToken', '')
-      commit('setUserInfo', '')
-      removeAllItem()
+    async logout({ commit }) {
+      try {
+        await UserApi.logout()
+        commit('setToken', '')
+        commit('setUserInfo', '')
+        removeAllItem()
+      } catch (error) {}
     }
   }
 }

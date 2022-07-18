@@ -15,7 +15,7 @@ export const publicRoutes = [
       {
         path: '/index',
         name: 'index',
-        component: () => import('../views/home')
+        component: () => import('../views/index')
       }
     ]
   },
