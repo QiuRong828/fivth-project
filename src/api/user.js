@@ -28,8 +28,9 @@ const statistics2 = () => {
 // 统计数据3
 const statistics3 = (data) => {
   return request({
-    url: `/admin/statistics3?type=${data.type}`,
-    method: 'GET'
+    url: '/admin/statistics3',
+    method: 'GET',
+    data
   })
 }
 
