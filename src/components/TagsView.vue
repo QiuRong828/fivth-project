@@ -117,9 +117,9 @@ const changeView = ({ props: { name } }) => {
 
 <style lang="scss" scoped>
 .tags-container {
-  height: 44px;
-  top: 64px;
-  position: fixed;
+  height: 54px;
+  line-height: 54px;
+  top: 69px;
   transition: all 0.4s;
   width: 100%;
   display: flex;
