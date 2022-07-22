@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 const getGoodsList = (current, data) => {
   return request({
-    url: `/goods/${current}`,
+    url: `/admin/goods/${current}`,
     method: 'GET',
     data
   })
