@@ -23,7 +23,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
-    console.log(response)
+    // console.log(response)
     if (response.status === 200) {
       return response.data.data
     }
