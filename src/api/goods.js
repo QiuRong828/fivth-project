@@ -27,8 +27,16 @@ const getSkusList = (current) => {
     method: 'get'
   })
 }
+
+const getCouponList = (current) => {
+  return request({
+    url: `/admin/coupon/${current}`,
+    method: 'get'
+  })
+}
 export default {
   getGoodsList,
   getCateList,
-  getSkusList
+  getSkusList,
+  getCouponList
 }

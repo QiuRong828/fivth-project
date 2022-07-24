@@ -26,7 +26,9 @@
             </el-form-item>
 
             <el-form-item style="margin-left: 360px">
-              <el-button type="primary" size="small">搜索</el-button>
+              <el-button type="primary" size="small" @click="handleSearch"
+                >搜索</el-button
+              >
               <el-button size="small">重置</el-button>
               <el-button
                 >收起 <el-icon class="el-icon--right"><Upload /></el-icon>
@@ -81,6 +83,22 @@
             </template>
             <template #audit="{ row }">
               <span> {{ row.ischeck === 1 ? '通过' : '拒绝' }} </span>
+            </template>
+            <template #active>
+              <div v-if="activeName.tab !== 'delete'" style="">
+                <el-button link type="primary" size="small">修改</el-button>
+                <el-button link type="primary" size="small">商品规格</el-button>
+                <el-button link type="primary" size="small"
+                  >设置轮播图</el-button
+                >
+                <el-button link type="primary" size="small">商品详情</el-button>
+                <el-popconfirm title="是否要删除该商品?">
+                  <template #reference>
+                    <el-button link type="primary" size="small">删除</el-button>
+                  </template>
+                </el-popconfirm>
+              </div>
+              <div v-else>暂无操作</div>
             </template>
           </Table>
         </el-card>
